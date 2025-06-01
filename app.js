@@ -97,7 +97,7 @@ function setupEventListeners() {
   clearButton.addEventListener('click', () => {
     searchInput.value = '';
     resultsContainer.innerHTML = '<div class="initial-message">Enter card ranks to see matching hands</div>';
-    searchInput.focus(); // <-- ADD THIS LINE to return focus to the input
+    searchInput.focus();
   });
 
   // Handle Delete key press on search input
@@ -181,6 +181,19 @@ function displayResults(matches) {
     header.textContent = rankCombo;
     handContainer.appendChild(header);
     
+    // Add position labels once at the top of each hand group
+    const positionLabels = document.createElement('div');
+    positionLabels.className = 'position-labels';
+    positionLabels.innerHTML = `
+      <div class="position-label-spacer"></div>
+      <div class="position-label">UTG</div>
+      <div class="position-label">MP</div>
+      <div class="position-label">CO</div>
+      <div class="position-label">BTN</div>
+      <div class="position-label">SB</div>
+    `;
+    handContainer.appendChild(positionLabels);
+    
     // Get suitedness patterns for this rank combo
     const patterns = appState.hands[rankCombo];
     
@@ -195,8 +208,6 @@ function displayResults(matches) {
     }
     
     // Define the order of patterns using the numeric IDs from the JSON data
-    // Based on the provided mapping: pattern_map = { 'mono': 1, 'trip_high': 2, 'trip_low': 3, 'double': 4, 'single_high': 5, 'single_low': 6, 'rainbow': 7 }
-    // But we want to maintain the original display order preference
     const patternOrder = {
       '4': 1, // double (first)
       '5': 2, // single_high (second)
@@ -298,27 +309,11 @@ function renderActions(actions) {
   
   // Create the grid HTML
   let gridHTML = '<div class="strategy-grid">';
-  
-  // Add column headers
-  gridHTML += '<div class="column-headers">';
-  gridHTML += '<div class="header-spacer"></div>'; // Space for row labels
-  positions.forEach(pos => {
-    gridHTML += `<div class="column-header">${pos}</div>`;
-  });
-  gridHTML += '</div>';
-  
-  // Add row labels
-  gridHTML += '<div class="row-labels">';
-  gridHTML += '<div class="row-label">Open</div>';
-  gridHTML += '<div class="row-label">Btn vs</div>';
-  gridHTML += '<div class="row-label">SB vs</div>';
-  gridHTML += '<div class="row-label">BB vs</div>';
-  gridHTML += '</div>';
-  
   gridHTML += '<table class="strategy-table">';
   
   // Row 1: Open actions
   gridHTML += '<tr class="open-row">';
+  gridHTML += '<td class="row-label-cell">Open</td>';
   positions.forEach(pos => {
     const openPct = actions.open?.[pos] || 0;
     const cell = getCellDisplay(openPct, 100 - openPct, 0);
@@ -328,6 +323,7 @@ function renderActions(actions) {
   
   // Row 2: Btn vs actions
   gridHTML += '<tr class="btn-vs-row">';
+  gridHTML += '<td class="row-label-cell">Btn vs</td>';
   positions.forEach((pos, idx) => {
     if (idx < 2) { // Only UTG and MP
       const raisePct = actions['Btn 3bet vs 1']?.[`vs${pos}`] || 0;
@@ -343,6 +339,7 @@ function renderActions(actions) {
   
   // Row 3: SB vs actions
   gridHTML += '<tr class="sb-vs-row">';
+  gridHTML += '<td class="row-label-cell">SB vs</td>';
   positions.forEach((pos, idx) => {
     if (idx < 4) { // UTG, MP, CO, BTN
       const vsPos = pos === 'BTN' ? 'vsBtn' : `vs${pos}`;
@@ -359,6 +356,7 @@ function renderActions(actions) {
   
   // Row 4: BB vs actions
   gridHTML += '<tr class="bb-vs-row">';
+  gridHTML += '<td class="row-label-cell">BB vs</td>';
   positions.forEach(pos => {
     const vsPos = pos === 'BTN' ? 'vsBtn' : `vs${pos}`;
     const raisePct = actions['BB 3bet vs 1']?.[vsPos] || 0;
@@ -369,7 +367,7 @@ function renderActions(actions) {
   });
   gridHTML += '</tr>';
   
-  gridHTML += '</table></div></div>';
+  gridHTML += '</table></div>';
   
   return gridHTML;
 }
