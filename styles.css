@@ -31,7 +31,7 @@ header {
   position: sticky;
   top: 0;
   background-color: #fff;
-  padding: 15px 0;
+  padding: 10px 0; /* Reduced from 15px */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 10;
   transition: background-color 0.3s, box-shadow 0.3s;
@@ -43,8 +43,8 @@ body.dark-mode header {
 }
 
 h1 {
-  font-size: 24px;
-  margin-bottom: 15px;
+  font-size: 22px; /* Slightly smaller */
+  margin-bottom: 10px; /* Reduced from 15px */
   text-align: center;
 }
 
@@ -52,43 +52,32 @@ body.dark-mode h1 {
   color: #89b4fa;
 }
 
-/* Position headers */
-.position-headers {
+/* Position headers - now part of strategy grid */
+.column-headers {
   display: flex;
-  justify-content: center;
-  margin: 15px auto 10px;
-  max-width: 400px;
-}
-
-.position-label {
-  flex: 1;
-  text-align: center;
+  margin-bottom: 2px;
+  font-size: 12px;
   font-weight: bold;
-  font-size: 14px;
-  padding: 5px;
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
-  border-right: none;
 }
 
-.position-label:first-child {
-  border-radius: 4px 0 0 4px;
+.header-spacer {
+  width: 70px; /* Match row labels width */
 }
 
-.position-label:last-child {
-  border-radius: 0 4px 4px 0;
-  border-right: 1px solid #ddd;
+.column-header {
+  width: 28px; /* Match table cell width */
+  text-align: center;
+  color: #666;
+  border: 1px solid transparent;
 }
 
-body.dark-mode .position-label {
-  background-color: #45475a;
-  border-color: #585b70;
+body.dark-mode .column-header {
   color: #89b4fa;
 }
 
 .search-container {
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 15px; /* Reduced from 20px */
 }
 
 #search-input {
@@ -157,10 +146,10 @@ body.dark-mode .error-message {
 
 .hand-group {
   background-color: white;
-  border-radius: 8px;
+  border-radius: 6px; /* Slightly smaller radius */
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  margin-bottom: 15px;
-  padding: 12px;
+  margin-bottom: 10px; /* Reduced from 15px */
+  padding: 8px; /* Reduced from 12px */
   transition: background-color 0.3s, box-shadow 0.3s;
 }
 
@@ -185,8 +174,8 @@ body.dark-mode .hand-group h3 {
 .hand-pattern {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
-  padding-bottom: 10px;
+  margin-bottom: 6px; /* Reduced from 10px */
+  padding-bottom: 6px; /* Reduced from 10px */
   border-bottom: 1px solid #eee;
 }
 
@@ -238,6 +227,7 @@ body.dark-mode .hand-pattern {
   margin-left: 15px;
   vertical-align: top;
   align-items: flex-start;
+  flex-direction: column;
 }
 
 .strategy-table {
@@ -246,8 +236,8 @@ body.dark-mode .hand-pattern {
 }
 
 .strategy-table td {
-  width: 35px;
-  height: 35px;
+  width: 28px;
+  height: 25px; /* Reduced from 35px */
   text-align: center;
   border: 1px solid #ddd;
   background-color: #fff;
@@ -255,6 +245,7 @@ body.dark-mode .hand-pattern {
   cursor: help;
   position: relative;
   transition: background-color 0.2s;
+  font-size: 12px; /* Reduced font size */
 }
 
 body.dark-mode .strategy-table td {
@@ -338,13 +329,14 @@ body.dark-mode .bb-vs-row {
   display: inline-block;
   vertical-align: top;
   margin-right: 5px;
-  font-size: 12px;
+  font-size: 11px; /* Reduced font size */
   font-weight: bold;
+  width: 70px; /* Explicit width for alignment */
 }
 
 .row-label {
-  height: 35px;
-  line-height: 35px;
+  height: 25px; /* Match table cell height */
+  line-height: 25px;
   padding-right: 8px;
   text-align: right;
   color: #666;
@@ -363,34 +355,47 @@ body.dark-mode .row-label {
   
   .hand-visualization {
     margin-right: 0;
-    margin-bottom: 10px;
+    margin-bottom: 8px; /* Reduced from 10px */
   }
   
   .card {
-    width: 35px;
-    height: 50px;
-    font-size: 14px;
+    width: 30px; /* Reduced from 35px */
+    height: 45px; /* Reduced from 50px */
+    font-size: 13px; /* Reduced from 14px */
   }
   
   .card.small-card {
-    width: 20px;
-    height: 28px; /* Maintaining ~5:7 aspect ratio for mobile */
-    font-size: 11px;
+    width: 18px; /* Reduced from 20px */
+    height: 25px; /* Reduced from 28px */
+    font-size: 10px; /* Reduced from 11px */
   }
   
   .strategy-grid {
     margin-left: 0;
-    margin-top: 10px;
+    margin-top: 8px; /* Reduced from 10px */
   }
   
   .strategy-table td {
-    width: 28px;
-    height: 28px;
-    font-size: 12px;
+    width: 22px; /* Reduced from 28px */
+    height: 22px; /* Reduced from 28px */
+    font-size: 10px; /* Reduced from 12px */
   }
   
-  .position-headers {
-    font-size: 12px;
+  .column-header {
+    width: 22px; /* Match mobile table cell width */
+  }
+  
+  .row-label {
+    height: 22px; /* Match mobile table cell height */
+    line-height: 22px;
+  }
+  
+  .row-labels {
+    width: 60px; /* Smaller on mobile */
+  }
+  
+  .header-spacer {
+    width: 60px; /* Match mobile row labels width */
   }
 }
 
