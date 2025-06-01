@@ -393,10 +393,6 @@ body.dark-mode .row-label {
   .row-labels {
     width: 60px; /* Smaller on mobile */
   }
-  
-  .header-spacer {
-    width: 60px; /* Match mobile row labels width */
-  }
 }
 
 /* Add a toggle for dark mode if desired */
