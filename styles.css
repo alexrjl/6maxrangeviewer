@@ -52,26 +52,27 @@ body.dark-mode h1 {
   color: #89b4fa;
 }
 
-/* Position headers - now part of strategy grid */
-.column-headers {
+/* Position labels - single row at top of each hand group */
+.position-labels {
   display: flex;
-  margin-bottom: 2px;
+  margin-bottom: 5px;
   font-size: 12px;
   font-weight: bold;
+  padding-left: 40px; /* Align with the strategy grids */
 }
 
-.header-spacer {
-  width: 70px; /* Match row labels width */
+.position-label-spacer {
+  width: 70px; /* Match row label cell width */
+  margin-right: 15px; /* Match strategy grid margin */
 }
 
-.column-header {
+.position-label {
   width: 28px; /* Match table cell width */
   text-align: center;
   color: #666;
-  border: 1px solid transparent;
 }
 
-body.dark-mode .column-header {
+body.dark-mode .position-label {
   color: #89b4fa;
 }
 
@@ -223,11 +224,9 @@ body.dark-mode .hand-pattern {
 
 /* Strategy grid styles */
 .strategy-grid {
-  display: inline-flex;
+  display: inline-block;
   margin-left: 15px;
   vertical-align: top;
-  align-items: flex-start;
-  flex-direction: column;
 }
 
 .strategy-table {
@@ -260,6 +259,22 @@ body.dark-mode .strategy-table td {
 
 body.dark-mode .strategy-table td:hover {
   background-color: #45475a;
+}
+
+/* Row label cells */
+.strategy-table td.row-label-cell {
+  width: 70px;
+  text-align: right;
+  padding-right: 8px;
+  cursor: default;
+  background-color: transparent;
+  border: none;
+  color: #666;
+  font-size: 11px;
+}
+
+body.dark-mode .strategy-table td.row-label-cell {
+  color: #a6adc8;
 }
 
 /* Tooltip for percentages */
@@ -324,28 +339,6 @@ body.dark-mode .bb-vs-row {
   background-color: rgba(243, 139, 168, 0.1);
 }
 
-/* Row labels for strategy grid */
-.row-labels {
-  display: inline-block;
-  vertical-align: top;
-  margin-right: 5px;
-  font-size: 11px; /* Reduced font size */
-  font-weight: bold;
-  width: 70px; /* Explicit width for alignment */
-}
-
-.row-label {
-  height: 25px; /* Match table cell height */
-  line-height: 25px;
-  padding-right: 8px;
-  text-align: right;
-  color: #666;
-}
-
-body.dark-mode .row-label {
-  color: #a6adc8;
-}
-
 /* Responsive adjustments */
 @media (max-width: 480px) {
   .hand-pattern {
@@ -381,17 +374,22 @@ body.dark-mode .row-label {
     font-size: 10px; /* Reduced from 12px */
   }
   
-  .column-header {
-    width: 22px; /* Match mobile table cell width */
+  .strategy-table td.row-label-cell {
+  width: 60px;
+  font-size: 10px;
   }
-  
-  .row-label {
-    height: 22px; /* Match mobile table cell height */
-    line-height: 22px;
+
+  .position-label {
+    width: 22px;
+    font-size: 10px;
   }
-  
-  .row-labels {
-    width: 60px; /* Smaller on mobile */
+
+  .position-label-spacer {
+    width: 60px;
+  }
+
+  .position-labels {
+    padding-left: 0;
   }
 }
 
