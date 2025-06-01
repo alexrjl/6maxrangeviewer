@@ -299,6 +299,14 @@ function renderActions(actions) {
   // Create the grid HTML
   let gridHTML = '<div class="strategy-grid">';
   
+  // Add column headers
+  gridHTML += '<div class="column-headers">';
+  gridHTML += '<div class="header-spacer"></div>'; // Space for row labels
+  positions.forEach(pos => {
+    gridHTML += `<div class="column-header">${pos}</div>`;
+  });
+  gridHTML += '</div>';
+  
   // Add row labels
   gridHTML += '<div class="row-labels">';
   gridHTML += '<div class="row-label">Open</div>';
